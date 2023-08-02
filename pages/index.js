@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import Date from '../components/date';
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from "../styles/utils.module.css";
@@ -19,7 +21,7 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>Hi! This is Shota.</p>
+        <p>Hi! This is Shota. I'm a MLOps engineer learning React.</p>
         <p>
           (this is a sample webisite - you'll be building a site like this on {' '}<a href="https://nextjs.org/learn"> our NExt.js tutorial</a>.)
         </p>
@@ -29,11 +31,11 @@ export default function Home({ allPostsData }) {
         <ul className={utilStyles.list}>
           {allPostsData.map(({id, date, title}) => (
             <li className={utilStyles.listItem} key={id}>
-              {title}
+              <Link href={`/posts/${id}`}>{title}</Link>
               <br />
-              {id}
-              <br />
-              {date}
+              <small className={utilStyles.lightText}>
+                <Date dateString={date} />
+              </small>
             </li>
           ))}
         </ul>
